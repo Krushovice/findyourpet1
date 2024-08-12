@@ -11,3 +11,12 @@ class Animal(models.Model):
     owner_last_name = models.CharField(max_length=50)
     owner_phone_number = PhoneNumberField(region="RU")
     special_signs = models.CharField(max_length=100)
+
+
+class Url(models.Model):
+    url = models.URLField(unique=True)
+    pet = models.ForeignKey(
+        Animal,
+        on_delete=models.PROTECT,
+        related_name="animal_url",
+    )
