@@ -1,20 +1,32 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views import View
+
+from tasky.pet.models import Animal
+
 
 # Create your views here.
 
 
 class PetIndexView(View):
     def get(self, request, *args, **kwargs):
-        animal_photo_url = (
-            "https://i.natgeofe.com/n/9135ca87-0115-4a22-8caf-d1bdef97a814/75552.jpg"
-        )
         return render(
             request,
             "pets/index.html",
             context={
-                "text": "It's the animal which we're find last",
-                "url": animal_photo_url,
+                "text": "It's the animal information which we're find",
+            },
+        )
+
+
+class PetShowView(View):
+    def get(self, request, *args, **kwargs):
+        pet_id = kwargs.get("pk")
+        pet = get_object_or_404(Animal, pk=pet_id)
+        return render(
+            request,
+            "pets/show.html",
+            context={
+                "pet": pet,
             },
         )
