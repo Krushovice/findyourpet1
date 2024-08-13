@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div>
+<img src="https://klike.net/uploads/posts/2020-10/1603267842_2.jpg" alt="потеряшка">
+<h2>{{pet.name}}</h2>
+<p>
+<ul>
+    <li>Разновидность: {{pet.kind}}</li>
+    <li>Возраст: {{pet.age}}</li>
+    <li>{{pet.special_signs}}</li>
+</ul>
+<h3>Контакные данные хозяина:</h3>
+    <ul>
+        <li>Фамилия владельца: {{pet.owner_last_name}}</li>
+        <li>Имя владельца: {{pet.owner_first_name}}</li>
+        <li>Номер телефона: {{pet.owner_phone_number}}</li>
+
+    </ul>
+</div>
+{% endblock %}
